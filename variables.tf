@@ -31,7 +31,7 @@ variable "create_high_cpu_alarm" {
 }
 
 variable "high_cpu_sns_topic_name" {
-  type        = "string"
+  type        = string
   description = "(optional) SNS topic where alarms will be send"
 }
 
@@ -70,7 +70,7 @@ variable "create_low_cpu_alarm" {
 }
 
 variable "low_cpu_sns_topic_name" {
-  type        = "string"
+  type        = string
   description = "(optional) SNS topic where alarms will be send"
 }
 
