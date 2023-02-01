@@ -61,6 +61,12 @@ variable "alarm_high_cpu_threshold" {
   default     = "60"
 }
 
+variable "alarm_high_cpu_actions_enabled" {
+  type        = bool
+  default     = true
+  description = "(optional) Indicates whether or not actions should be executed during any changes to the alarm's state"
+}
+
 #--------------------------------------------------
 # Low CPU Alarm
 #--------------------------------------------------
@@ -101,6 +107,11 @@ variable "alarm_low_cpu_threshold" {
   default     = "10"
 }
 
+variable "alarm_low_cpu_actions_enabled" {
+  type        = bool
+  default     = true
+  description = "(optional) Indicates whether or not actions should be executed during any changes to the alarm's state"
+}
 
 #--------------------------------------------------
 # Log Pattern Alarm Options
@@ -156,4 +167,10 @@ variable "log_pattern_statistic" {
   type        = string
   default     = "Sum"
   description = "(optional) The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum"
+}
+
+variable "alarm_log_pattern_actions_enabled" {
+  type        = bool
+  default     = true
+  description = "(optional) Indicates whether or not actions should be executed during any changes to the alarm's state"
 }

@@ -44,7 +44,8 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
     ServiceName = var.name
   }
 
-  alarm_actions = [data.aws_sns_topic.high_cpu[count.index].arn]
+  actions_enabled = var.alarm_high_cpu_actions_enabled
+  alarm_actions   = [data.aws_sns_topic.high_cpu[count.index].arn]
 
   tags          = merge(var.tags, var.cloudwatch_metric_alarm_tags)
 }
@@ -71,7 +72,8 @@ resource "aws_cloudwatch_metric_alarm" "low_cpu" {
     ServiceName = var.name
   }
 
-  alarm_actions = [data.aws_sns_topic.low_cpu[count.index].arn]
+  actions_enabled = var.alarm_low_cpu_actions_enabled
+  alarm_actions   = [data.aws_sns_topic.low_cpu[count.index].arn]
 
   tags          = merge(var.tags, var.cloudwatch_metric_alarm_tags)
 }
@@ -102,9 +104,9 @@ resource "aws_cloudwatch_metric_alarm" "log_pattern" {
 
   alarm_name        = "${var.name}-${var.log_pattern_alias}-log"
   alarm_description = "Counts ${var.log_pattern_alias} messages in logs"
-  actions_enabled   = true
 
-  alarm_actions = [data.aws_sns_topic.log_pattern[count.index].arn]
+  actions_enabled   = var.alarm_log_pattern_actions_enabled
+  alarm_actions     = [data.aws_sns_topic.log_pattern[count.index].arn]
 
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = var.log_pattern_evaluation_periods
