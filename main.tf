@@ -40,7 +40,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
     ServiceName = var.name
   }
 
-  alarm_actions = [var.aws_sns_topic.high_cpu.arn]
+  alarm_actions = [data.aws_sns_topic.high_cpu.arn]
 
   tags          = merge(var.tags, var.cloudwatch_metric_alarm_tags)
 }
