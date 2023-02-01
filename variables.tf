@@ -4,6 +4,7 @@ variable "cluster_name" {
 }
 
 variable "name" {
+  type        = string
   description = "(required, forces new resource) Name of service"
 }
 
@@ -33,6 +34,7 @@ variable "create_high_cpu_alarm" {
 variable "high_cpu_sns_topic_name" {
   type        = string
   description = "(optional) SNS topic where alarms will be send"
+  default     = ""
 }
 
 variable "alarm_high_cpu_evaluation_periods" {
@@ -72,6 +74,7 @@ variable "create_low_cpu_alarm" {
 variable "low_cpu_sns_topic_name" {
   type        = string
   description = "(optional) SNS topic where alarms will be send"
+  default     = ""
 }
 
 variable "alarm_low_cpu_evaluation_periods" {
@@ -112,6 +115,7 @@ variable "create_log_pattern_alarm" {
 variable "log_pattern_sns_topic_name" {
   type        = string
   description = "(optional) SNS topic where alarms will be send"
+  default     = ""
 }
 
 variable "log_group_name" {
