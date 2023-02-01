@@ -3,19 +3,23 @@ data "aws_ecs_cluster" "this" {
 }
 
 data "aws_sns_topic" "high_cpu" {
-  name = var.high_cpu_sns_topic_name
+  count = var.create_high_cpu_alarm ? 1 : 0
+  name  = var.high_cpu_sns_topic_name
 }
 
 data "aws_sns_topic" "low_cpu" {
-  name = var.low_cpu_sns_topic_name
+  count = var.create_low_cpu_alarm ? 1 : 0
+  name  = var.low_cpu_sns_topic_name
 }
 
 data "aws_sns_topic" "log_pattern" {
-  name = var.log_pattern_sns_topic_name
+  count = var.create_log_pattern_alarm ? 1 : 0
+  name  = var.log_pattern_sns_topic_name
 }
 
 data "aws_cloudwatch_log_group" "this" {
-  name = var.log_group_name
+  count = var.create_log_pattern_alarm ? 1 : 0
+  name  = var.log_group_name
 }
 
 #------------------------------------------------------------------------------
