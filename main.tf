@@ -1,5 +1,5 @@
 data "aws_ecs_cluster" "this" {
-  name = var.cluster_name
+  cluster_name = var.cluster_name
 }
 
 data "aws_sns_topic" "high_cpu" {
@@ -36,7 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   threshold           = var.alarm_high_cpu_threshold
 
   dimensions = {
-    ClusterName = data.aws_ecs_cluster.this.cluster_name
+    ClusterName = data.aws_ecs_cluster.this.name
     ServiceName = var.name
   }
 
@@ -97,7 +97,7 @@ resource "aws_cloudwatch_metric_alarm" "log_pattern" {
   count = var.create_log_pattern_alarm ? 1 : 0
 
   alarm_name        = "${var.name}-${var.log_pattern_alias}-log"
-  alarm_description = "Counts ${var.logs_pattern_alias} messages in logs"
+  alarm_description = "Counts ${var.log_pattern_alias} messages in logs"
   actions_enabled   = true
 
   alarm_actions = [data.aws_sns_topic.log_pattern.arn]
