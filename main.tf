@@ -36,7 +36,7 @@ resource "aws_cloudwatch_metric_alarm" "high_cpu" {
   threshold           = var.alarm_high_cpu_threshold
 
   dimensions = {
-    ClusterName = data.aws_ecs_cluster.this.name
+    ClusterName = data.aws_ecs_cluster.this.cluster_name
     ServiceName = var.name
   }
 
