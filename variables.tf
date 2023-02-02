@@ -1,6 +1,6 @@
 variable "cluster_name" {
   type        =  string
-  description = "The name of the ECS Cluster"
+  description = "(required) Name of the ECS Cluster"
 }
 
 variable "name" {
